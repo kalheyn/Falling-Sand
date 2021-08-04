@@ -1,1 +1,4 @@
-# application.macosx/FallingSand.app/Contents/PlugIns/
+# Ignores embedded Java in the Mac OS X application. 
+# Embedding Java will make the application larger but it will be far more likely to work. 
+# Users on other platforms will need to install Java 8.
+# application.macosx/FallingSand.app/Contents/PlugIns/  
