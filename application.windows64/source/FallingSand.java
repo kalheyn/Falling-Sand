@@ -12,7 +12,6 @@ import java.io.InputStream;
 import java.io.OutputStream; 
 import java.io.IOException; 
 
-// TEST GITHUB
 public class FallingSand extends PApplet {
 
 final int EMPTY = color(0); 
