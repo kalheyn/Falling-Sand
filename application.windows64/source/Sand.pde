@@ -1,19 +1,17 @@
 final color SAND = #EDC9AF;
 
-class Sand {
-  private int x; 
-  private int y; 
+class Sand extends Particle {
+  final color type = SAND;
 
   public Sand(int x, int y) {
-    setX(x);
-    setY(y);
+   super(x, y);
   }
- 
+
   public void move() {
     // Check area around sand
-    boolean down = isEmpty(x, y + 1); 
-    boolean downLeft = isEmpty(x-1, y+1); 
-    boolean downRight = isEmpty(x+1, y+1);
+    boolean down = super.checkDown();
+    boolean downLeft = super.checkDownLeft();
+    boolean downRight = super.checkDownRight();
 
     //Randomize downLeft and downRight
     if (downLeft && downRight) {
@@ -24,42 +22,16 @@ class Sand {
 
     // Move sand and replace with emptiness
     if (down) {
-      set(x, y+1, SAND); 
-      set(x, y, EMPTY);
+      super.moveDown(type);
     } else if (downLeft) {
-      set(x-1, y+1, SAND);
-      set(x, y, EMPTY);
+      super.moveDownLeft(type);
     } else if (downRight) {
-      set(x+1, y+1, SAND);
-      set(x, y, EMPTY);
+      super.moveDownRight(type);
     }
   }
 
-  private boolean inBounds(int x, int y) {
-    return (x >= 0) && (y >= 0) && (x < width) && (y < height);
-  }
 
-  private boolean isEmpty(int x, int y) {
-    return inBounds(x, y) && (getCell(x, y) == EMPTY);
-  }
 
-  private color getCell(int x, int y) {
-    return pixels[x + (y * width)];
-  }
 
-  private int getX() {
-    return this.x;
-  }
 
-  private int getY() {
-    return this.y;
-  }
-
-  private void setX(int x) {
-    this.x = x;
-  }
-
-  private void setY(int y) {
-    this.y = y;
-  }
 }

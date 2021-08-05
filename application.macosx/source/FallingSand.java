@@ -27,20 +27,19 @@ public void draw() {
   // Draw particles
   Cursor sandCursor = new Cursor(SAND);
   sandCursor.draw();
-  
+
   // Loop through display to get cells
   for (int x = 0; x < width; x++) 
     for (int y = 0; y < height; y++) {
       int cell = pixels[x + (y * width)];
 
-      // Fall sand
+      // Run logic for each type of cell
       if (cell == SAND) {
         Sand sand = new Sand(x, y);
         sand.move();
       }
     }
 }
-
 
 class Cursor {
   private int size = 10;
@@ -76,52 +75,50 @@ class Cursor {
     this.type = type;
   }
 }
-
 final int EMPTY = color(0); 
 
-final int SAND = 0xffEDC9AF;
-
-class Sand {
+class Particle {
   private int x; 
   private int y; 
 
-  public Sand(int x, int y) {
+  public Particle(int x, int y) {
     setX(x);
     setY(y);
   }
- 
-  public void move() {
-    // Check area around sand
-    boolean down = isEmpty(x, y + 1); 
-    boolean downLeft = isEmpty(x-1, y+1); 
-    boolean downRight = isEmpty(x+1, y+1);
 
-    //Randomize downLeft and downRight
-    if (downLeft && downRight) {
-      boolean coinFlip = random(1) > 0.5f;
-      downLeft = coinFlip;
-      downRight = !coinFlip;
-    }
-
-    // Move sand and replace with emptiness
-    if (down) {
-      set(x, y+1, SAND); 
-      set(x, y, EMPTY);
-    } else if (downLeft) {
-      set(x-1, y+1, SAND);
-      set(x, y, EMPTY);
-    } else if (downRight) {
-      set(x+1, y+1, SAND);
-      set(x, y, EMPTY);
-    }
+  private void moveDown(int type) {
+    set(x, y + 1, type);
+    set(x, y, EMPTY);
   }
 
-  private boolean inBounds(int x, int y) {
-    return (x >= 0) && (y >= 0) && (x < width) && (y < height);
+  private void moveDownLeft(int type) {
+    set(x - 1, y + 1, type);
+    set(x, y, EMPTY);
+  }
+
+  private void moveDownRight(int type) {
+    set(x + 1, y + 1, type);
+    set(x, y, EMPTY);
+  }
+
+  private boolean checkDown() {
+    return isEmpty(x, y + 1);
+  }
+
+  private boolean checkDownLeft() {
+    return isEmpty(x - 1, y + 1);
+  }
+
+  private boolean checkDownRight() {
+    return isEmpty(x + 1, y + 1);
   }
 
   private boolean isEmpty(int x, int y) {
     return inBounds(x, y) && (getCell(x, y) == EMPTY);
+  }
+
+  private boolean inBounds(int x, int y) {
+    return (x >= 0) && (y >= 0) && (x < width) && (y < height);
   }
 
   private int getCell(int x, int y) {
@@ -145,7 +142,45 @@ class Sand {
   }
 }
 
-  public void settings() {  size(500,500); }
+final int SAND = 0xffEDC9AF;
+
+class Sand extends Particle {
+  final int type = SAND;
+
+  public Sand(int x, int y) {
+   super(x, y);
+  }
+
+  public void move() {
+    // Check area around sand
+    boolean down = super.checkDown();
+    boolean downLeft = super.checkDownLeft();
+    boolean downRight = super.checkDownRight();
+
+    //Randomize downLeft and downRight
+    if (downLeft && downRight) {
+      boolean coinFlip = random(1) > 0.5f;
+      downLeft = coinFlip;
+      downRight = !coinFlip;
+    }
+
+    // Move sand and replace with emptiness
+    if (down) {
+      super.moveDown(type);
+    } else if (downLeft) {
+      super.moveDownLeft(type);
+    } else if (downRight) {
+      super.moveDownRight(type);
+    }
+  }
+
+
+
+
+
+}
+
+  public void settings() {  size(500, 500); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "FallingSand" };
     if (passedArgs != null) {
