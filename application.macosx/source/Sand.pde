@@ -1,13 +1,14 @@
 final color SAND = #EDC9AF;
 
-class Sand extends Particle {
+class Sand extends Particle implements Simulator {
   final color type = SAND;
 
   public Sand(int x, int y) {
-   super(x, y);
+    super(x, y);
   }
 
-  public void move() {
+  @Override
+    public void move() {
     // Check area around sand
     boolean down = super.checkDown();
     boolean downLeft = super.checkDownLeft();
@@ -29,9 +30,4 @@ class Sand extends Particle {
       super.moveDownRight(type);
     }
   }
-
-
-
-
-
 }

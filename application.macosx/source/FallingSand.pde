@@ -9,8 +9,8 @@ void draw() {
   loadPixels();
 
   // Draw particles
-  Cursor sandCursor = new Cursor(SAND);
-  sandCursor.draw();
+  Painter sandPainter = new Cursor(SAND); // decouple from Cursor class using Painter interface
+  sandPainter.paint();
 
   // Loop through display to get cells
   for (int x = 0; x < width; x++) 
@@ -19,8 +19,10 @@ void draw() {
 
       // Run logic for each type of cell
       if (cell == SAND) {
-        Sand sand = new Sand(x, y);
-        sand.move();
+
+        // Simulate sand
+        Simulator sandSimulator = new Sand(x, y); // decouple from Sand class using Simulator interface
+        sandSimulator.move();
       }
     }
 }

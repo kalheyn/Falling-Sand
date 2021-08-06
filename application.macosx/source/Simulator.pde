@@ -1,0 +1,4 @@
+
+interface Simulator {
+  void move();
+}

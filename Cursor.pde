@@ -1,5 +1,5 @@
 
-class Cursor {
+class Cursor implements Painter {
   private int size = 10;
   private color type;
 
@@ -8,7 +8,8 @@ class Cursor {
     setType(type);
   }
 
-  public void draw() {
+  @Override
+    public void paint() {
     if (mousePressed) {
       for (int x = -1 * (size / 2); x < (size / 2); x++)
         for (int y = -1 * (size / 2); y < (size / 2); y++ ) {

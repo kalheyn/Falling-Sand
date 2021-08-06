@@ -25,8 +25,8 @@ public void draw() {
   loadPixels();
 
   // Draw particles
-  Cursor sandCursor = new Cursor(SAND);
-  sandCursor.draw();
+  Painter sandPainter = new Cursor(SAND); // decouple from Cursor class using Painter interface
+  sandPainter.paint();
 
   // Loop through display to get cells
   for (int x = 0; x < width; x++) 
@@ -35,13 +35,15 @@ public void draw() {
 
       // Run logic for each type of cell
       if (cell == SAND) {
-        Sand sand = new Sand(x, y);
-        sand.move();
+
+        // Simulate sand
+        Simulator sandSimulator = new Sand(x, y); // decouple from Sand class using Simulator interface
+        sandSimulator.move();
       }
     }
 }
 
-class Cursor {
+class Cursor implements Painter {
   private int size = 10;
   private int type;
 
@@ -50,7 +52,8 @@ class Cursor {
     setType(type);
   }
 
-  public void draw() {
+  @Override
+    public void paint() {
     if (mousePressed) {
       for (int x = -1 * (size / 2); x < (size / 2); x++)
         for (int y = -1 * (size / 2); y < (size / 2); y++ ) {
@@ -76,6 +79,9 @@ class Cursor {
   }
 }
 final int EMPTY = color(0); 
+interface Painter {
+  public void paint();
+}
 
 class Particle {
   private int x; 
@@ -141,17 +147,17 @@ class Particle {
     this.y = y;
   }
 }
-
 final int SAND = 0xffEDC9AF;
 
-class Sand extends Particle {
+class Sand extends Particle implements Simulator {
   final int type = SAND;
 
   public Sand(int x, int y) {
-   super(x, y);
+    super(x, y);
   }
 
-  public void move() {
+  @Override
+    public void move() {
     // Check area around sand
     boolean down = super.checkDown();
     boolean downLeft = super.checkDownLeft();
@@ -173,13 +179,11 @@ class Sand extends Particle {
       super.moveDownRight(type);
     }
   }
-
-
-
-
-
 }
 
+interface Simulator {
+  public void move();
+}
   public void settings() {  size(500, 500); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "FallingSand" };
