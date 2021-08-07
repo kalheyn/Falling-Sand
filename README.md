@@ -25,7 +25,8 @@ A falling sand simulation game, like https://artsology.com/sand_painting.php, bu
 ## Future Features :keyboard:	
 1. Improved sand physics
 2. Continuously falling sand, in addition to drawing with mouse
-3. Multiple particle types
+3. Dynamic cursor sizes
+4. Multiple particle types
     * :fire:	
     * :droplet:
     * :wind_face:
