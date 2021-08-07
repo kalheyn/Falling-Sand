@@ -184,7 +184,7 @@ class Sand extends Particle implements Simulator {
 interface Simulator {
   public void move();
 }
-  public void settings() {  size(500, 500); }
+  public void settings() {  size(500,500); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "FallingSand" };
     if (passedArgs != null) {
