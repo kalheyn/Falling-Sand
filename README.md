@@ -1,6 +1,9 @@
 # FallingSand
 A falling sand simulation game, like https://artsology.com/sand_painting.php, built using Processing3 (https://processing.org/)
 
+## Screenshots :movie_camera:	
+![Falling Sand Screencapture](https://github.com/kalheyn/FallingSand/blob/main/falling-sand.gif)
+
 ## How to Play :joystick:	
 1. [Download](https://github.com/kalheyn/FallingSand/archive/refs/heads/main.zip) the repository 
     * Click the green **Code** button in the top right corner
@@ -18,9 +21,6 @@ A falling sand simulation game, like https://artsology.com/sand_painting.php, bu
     * Make sure you right click and select Open instead of just double clicking on the application. Otherwise, you might get the error; *"'FallingSand.app' cannot be opened because the developer cannot be verified."*
     
 8. Enjoy!  
-
-## Screenshots :movie_camera:	
-![Falling Sand Screencapture](https://github.com/kalheyn/FallingSand/blob/main/falling-sand.gif)
 
 ## Future Features :keyboard:	
 1. Improved sand physics
