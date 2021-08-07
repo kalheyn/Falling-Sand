@@ -3,3 +3,5 @@ A falling sand simulation game, like https://artsology.com/sand_painting.php, bu
 
 ## Screenshots
 ![Falling Sand Screencapture](https://github.com/kalheyn/FallingSand/blob/master/falling-sand.mov)
+![Falling Sand Screencapture](https://github.com/kalheyn/FallingSand/blob/master/falling-sand.gif)
+
