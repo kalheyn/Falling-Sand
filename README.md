@@ -1,6 +1,17 @@
 # FallingSand
 A falling sand simulation game, like https://artsology.com/sand_painting.php, built using Processing3 (https://processing.org/)
 
+## Introduction :mortar_board:	
+The Falling Sand applet implements simple logic to individual pixels in order to simulate falling sand wherever the user clicks on the canvas.
+
+This project is an introductory application of the four principles of Object-Oriented Programming (OOP): encapsulation, abstraction, inheritance, and polymorphism. Additionally, it is an experiment in designing dynamic visual interfaces, implementing particle physics logic, and programming cellular automata.
+
+• Built from scratch in the Processing3 Development Environment using Java
+• Applied OOP principles such as encapsulation, abstraction, inheritance, and polymorphism (e.g. encapsulated objects such as Sand which inherits from the parent class Particle).
+• Created interfaces for loosely-coupled and extensibly designed code
+
+
+
 ## Screenshots :movie_camera:	
 ![Falling Sand Screencapture](https://github.com/kalheyn/FallingSand/blob/main/falling-sand.gif)
 
